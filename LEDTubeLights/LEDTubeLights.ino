@@ -1,12 +1,11 @@
 #include <Adafruit_NeoPixel.h>
 
 #define PIN 2
-#define NUM_LEDS 60
 #define NUM_TUBES 7
 #define NUM_LEDS_PER_TUBE 6
-#define BRIGHTNESS 250
+#define BRIGHTNESS 200
 
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRBW + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_TUBES * NUM_LEDS_PER_TUBE, PIN, NEO_GRBW + NEO_KHZ800);
 
 void setup() {
   
