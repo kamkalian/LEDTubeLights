@@ -83,14 +83,12 @@ void setGermany(int gamma){
 
   int r = neopix_gamma[gamma];
   int g = neopix_gamma[gamma*80/100];
-  
-  setRow(0, strip.Color(r,g,0,0));
-  setRow(1, strip.Color(r,g,0,0));
-  setRow(2, strip.Color(r,0,0,0));
-  setRow(3, strip.Color(r,0,0,0));
-  setRow(4, strip.Color(0,0,0,0));
-  setRow(5, strip.Color(0,0,0,0));
-  
+
+  int third = NUM_LEDS_PER_TUBE / 3;
+  for(int i=0;i<third;i++) setRow(i, strip.Color(r,g,0,0));
+  for(int i=third;i<2*third;i++) setRow(i, strip.Color(r,0,0,0));
+  for(int i=2*third;i<3*third;i++) setRow(i, strip.Color(0,0,0,0));
+    
 }
 
 void setSweden(int gamma){
@@ -99,6 +97,19 @@ void setSweden(int gamma){
   int g = neopix_gamma[gamma];
   int b = neopix_gamma[gamma];
 
+  int fifth = NUM_LEDS_PER_TUBE / 5;
+  int x = 2 * fifth * 5 / 4;
+
+  for(int i=0;i<2*fifth;i++) setRow(i, strip.Color(0,0,b,0));
+  for(int i=2*fifth;i<3*fifth;i++) setRow(i, strip.Color(r,g,0,0));
+  for(int i=3*fifth;i<5*fifth;i++) setRow(i, strip.Color(0,0,b,0));
+
+  if(5*fifth!=NUM_LEDS_PER_TUBE) setRow(NUM_LEDS_PER_TUBE-1, strip.Color(0,0,b,0)); //wenn die Teilung durch 5 nicht aufgeht wird hier eine extra Linie gezeichnet.
+  
+  for(int i=x;i<x+fifth;i++) setCol(i, strip.Color(r,g,0,0));
+  
+
+/*
   setRow(5, strip.Color(0,0,b,0));
   setRow(4, strip.Color(0,0,b,0));
   setRow(3, strip.Color(r,g,0,0));
@@ -106,7 +117,7 @@ void setSweden(int gamma){
   setRow(1, strip.Color(0,0,b,0));
   setRow(0, strip.Color(0,0,b,0));
   setCol(1, strip.Color(r,g,0,0));
-  
+*/
 }
 
 void setRow(int y, uint32_t color){
