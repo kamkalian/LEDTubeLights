@@ -9,7 +9,7 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_TUBES * NUM_LEDS_PER_TUBE, PIN, 
 
 int gamma = 0;
 boolean fadeIn = true;
-String country = "deu";
+String country = "1";
 
 byte neopix_gamma[] = {
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -56,22 +56,20 @@ void loop() {
   if(gamma<1) {
     
     fadeIn = true;
-    if(country=="deu") {
+    if(country=="1") {
 
-      country = "swe";
-      setSweden(gamma);
+      country = "2";
       
     }else{
 
-      country = "deu";
-      setGermany(gamma);
+      country = "1";
       
     }
     
   }
 
-  if(country=="deu") setGermany(gamma);
-  if(country=="swe") setSweden(gamma);
+  if(country=="1") setSerbia(gamma);
+  if(country=="2") setSwitzerland(gamma);
   
   strip.show(); 
   
@@ -108,17 +106,49 @@ void setSweden(int gamma){
   
   for(int i=x;i<x+fifth;i++) setCol(i, strip.Color(r,g,0,0));
   
-
-/*
-  setRow(5, strip.Color(0,0,b,0));
-  setRow(4, strip.Color(0,0,b,0));
-  setRow(3, strip.Color(r,g,0,0));
-  setRow(2, strip.Color(0,0,b,0));
-  setRow(1, strip.Color(0,0,b,0));
-  setRow(0, strip.Color(0,0,b,0));
-  setCol(1, strip.Color(r,g,0,0));
-*/
 }
+
+void setSwitzerland(int gamma){
+
+  int r = neopix_gamma[gamma];
+  int w = neopix_gamma[gamma];
+
+  for(int i=0;i<NUM_TUBES;i++) setCol(i, strip.Color(r,0,0,0));
+
+  //setCol(2, strip.Color(0,0,0,w));
+  setCol(3, strip.Color(0,0,0,w));
+
+  //setRow(2, strip.Color(0,0,0,w));
+  setRow(2, strip.Color(0,0,0,w));
+
+  setRow(0, strip.Color(r,0,0,0));
+  setRow(5, strip.Color(r,0,0,0));
+  setCol(0, strip.Color(r,0,0,0));
+  setCol(6, strip.Color(r,0,0,0));
+  
+}
+
+
+void setSerbia(int gamma){
+
+  int r = neopix_gamma[gamma]/2;
+  int r1 = neopix_gamma[gamma];
+  int g = neopix_gamma[gamma]/2;
+  int b = neopix_gamma[gamma]/5;
+  int w = neopix_gamma[gamma];
+
+  int third = NUM_LEDS_PER_TUBE / 3;
+  for(int i=0;i<third;i++) setRow(i, strip.Color(0,0,0,w));
+  for(int i=third;i<2*third;i++) setRow(i, strip.Color(0,0,b,0));
+  for(int i=2*third;i<3*third;i++) setRow(i, strip.Color(r,0,0,0));
+
+  strip.setPixelColor(8, strip.Color(r1,g,0,0));
+  strip.setPixelColor(9, strip.Color(r1,g,0,0));
+  strip.setPixelColor(14, strip.Color(r1,g,0,0));
+  strip.setPixelColor(15, strip.Color(r1,g,0,0));
+  
+}
+
 
 void setRow(int y, uint32_t color){
 
