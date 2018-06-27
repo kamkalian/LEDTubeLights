@@ -68,8 +68,8 @@ void loop() {
     
   }
 
-  if(country=="1") setSerbia(gamma);
-  if(country=="2") setSwitzerland(gamma);
+  if(country=="1") setGermany(gamma);
+  if(country=="2") setSouthKorea(gamma);
   
   strip.show(); 
   
@@ -146,6 +146,31 @@ void setSerbia(int gamma){
   strip.setPixelColor(9, strip.Color(r1,g,0,0));
   strip.setPixelColor(14, strip.Color(r1,g,0,0));
   strip.setPixelColor(15, strip.Color(r1,g,0,0));
+  
+}
+
+void setSouthKorea(int gamma){
+
+  int r = neopix_gamma[gamma];
+  int b = neopix_gamma[gamma]/5;
+  int w = neopix_gamma[gamma];
+
+  
+  for(int i=0;i<NUM_LEDS_PER_TUBE;i++) setRow(i, strip.Color(0,0,0,w));
+  
+  strip.setPixelColor(14, strip.Color(0,0,b,0));
+  strip.setPixelColor(15, strip.Color(r,0,0,0));
+  strip.setPixelColor(19, strip.Color(0,0,b,0));
+  strip.setPixelColor(20, strip.Color(0,0,b,0));
+  strip.setPixelColor(21, strip.Color(r,0,0,0));
+  strip.setPixelColor(22, strip.Color(r,0,0,0));
+  strip.setPixelColor(26, strip.Color(0,0,b,0));
+  strip.setPixelColor(27, strip.Color(r,0,0,0));
+
+  strip.setPixelColor(7, strip.Color(0,0,0,0));
+  strip.setPixelColor(10, strip.Color(0,0,0,0));
+  strip.setPixelColor(31, strip.Color(0,0,0,0));
+  strip.setPixelColor(34, strip.Color(0,0,0,0));
   
 }
 
