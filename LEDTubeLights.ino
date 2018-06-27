@@ -3,7 +3,7 @@
 #define PIN 2
 #define NUM_TUBES 7
 #define NUM_LEDS_PER_TUBE 6
-#define BRIGHTNESS 200
+#define BRIGHTNESS 255
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_TUBES * NUM_LEDS_PER_TUBE, PIN, NEO_GRBW + NEO_KHZ800);
 
